@@ -61,12 +61,12 @@ public class WorkerController {
        return "worker-form";
    }
 
-//    @GetMapping("/delete")
-//    public String deleteWorker(@RequestParam("workerId") int theId) {
+    @GetMapping("/delete")
+    public String deleteWorker(@RequestParam("workerId") int theId) {
 
-//        // delete the worker
-//        workerDAO.deleteWorker(theId);
+        // delete the worker
+        workerService.deleteWorker(theId);
 
-//        return "redirect:/worker/list";
-//    }
+        return "redirect:/worker/list";
+    }
 }

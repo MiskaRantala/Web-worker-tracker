@@ -10,4 +10,6 @@ public interface WorkerService {
     public void saveWorker(Worker theWorker);
 
     public Worker getWorker(int theId);
+
+    public void deleteWorker(int theId);
 }

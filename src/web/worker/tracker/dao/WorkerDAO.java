@@ -12,4 +12,5 @@ public interface WorkerDAO {
 
     public Worker getWorker(int theId);
 
+    public void deleteWorker(int theId);
 }

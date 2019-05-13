@@ -49,9 +49,23 @@ public class WorkerDAOImpl implements WorkerDAO {
         // get the current hibernate session
         Session currentSession = sessionFactory.getCurrentSession();
 
-        // now retrieve/read from database using primary key
+        // retrieve/read from database using primary key
         Worker theWorker = currentSession.get(Worker.class, theId);
 
         return theWorker;
+    }
+
+    @Override
+    public void deleteWorker(int theId) {
+
+        // get the current hibernate session
+        Session currentSession = sessionFactory.getCurrentSession();
+
+        // delete object with primary key
+        Query theQuery = currentSession.createQuery("DELETE FROM Worker WHERE id=:workerId");
+        theQuery.setParameter("workerId", theId);
+
+        // execute the update
+        theQuery.executeUpdate();
     }
 }
