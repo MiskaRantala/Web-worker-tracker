@@ -12,4 +12,6 @@ public interface WorkerService {
     public Worker getWorker(int theId);
 
     public void deleteWorker(int theId);
+
+    public List<Worker> searchWorkers(String theSearchName);
 }

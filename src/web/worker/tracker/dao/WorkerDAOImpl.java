@@ -2,6 +2,7 @@ package web.worker.tracker.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.jdbc.Work;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -67,5 +68,36 @@ public class WorkerDAOImpl implements WorkerDAO {
 
         // execute the update
         theQuery.executeUpdate();
+    }
+
+    @Override
+    public List<Worker> searchWorker(String theSearchName) {
+
+        // get the current hibernate session
+        Session currentSession = sessionFactory.getCurrentSession();
+
+        Query theQuery = null;
+
+        // only search by name if theSearchName is not empty
+        if (theSearchName != null && theSearchName.trim().length() > 0) {
+
+            // search for firstName or lastName, case sensitive
+            theQuery = currentSession.createQuery(
+                    "FROM Worker WHERE LOWER (firstName) LIKE :theName OR LOWER (lastName) LIKE :theName", Worker.class);
+            theQuery.setParameter("theName", "%" + theSearchName.toLowerCase() + "%");
+        }
+
+        // theSearchName is empty, so just get all workers
+        else {
+
+            theQuery = currentSession.createQuery("FROM Worker", Worker.class);
+        }
+
+        // execute query and get result list
+        List<Worker> workers = theQuery.getResultList();
+
+        // return the results
+        return workers;
+
     }
 }

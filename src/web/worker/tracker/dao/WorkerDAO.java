@@ -13,4 +13,6 @@ public interface WorkerDAO {
     public Worker getWorker(int theId);
 
     public void deleteWorker(int theId);
+
+    public List<Worker> searchWorker(String theSearchName);
 }

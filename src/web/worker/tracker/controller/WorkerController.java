@@ -69,4 +69,16 @@ public class WorkerController {
 
         return "redirect:/worker/list";
     }
+
+    @GetMapping("/search")
+    public String searchWorkers(@RequestParam("theSearchName") String theSearchName, Model theModel) {
+
+        // search for the workers
+        List<Worker> theWorkers = workerService.searchWorkers(theSearchName);
+
+        // add the workers to the model
+        theModel.addAttribute("workers", theWorkers);
+
+        return "list-workers";
+    }
 }
