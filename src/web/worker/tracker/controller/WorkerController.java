@@ -48,21 +48,25 @@ public class WorkerController {
         return "redirect:/worker/list";
     }
 
-//    @GetMapping("/showFormForUpdate")
-//    public String showFormForUpdate(@RequestParam("workerId") int theId, Model theModel) {
-//
-//        // get the worker from service
-//        Worker theWorker = workerDAO.getWorker(theId);
-//        // set worker as a model attribute to pre-populate the form
-//        theModel.addAttribute("worker", theWorker);
-//        // send over to our form
-//        return "worker-form";
-//    }
-//
+   @GetMapping("/showFormForUpdate")
+   public String showFormForUpdate(@RequestParam("workerId") int theId, Model theModel) {
+
+       // get the worker from service
+       Worker theWorker = workerService.getWorker(theId);
+
+       // set worker as a model attribute to pre-populate the form
+       theModel.addAttribute("worker", theWorker);
+
+       // send over to our form
+       return "worker-form";
+   }
+
 //    @GetMapping("/delete")
 //    public String deleteWorker(@RequestParam("workerId") int theId) {
+
 //        // delete the worker
 //        workerDAO.deleteWorker(theId);
+
 //        return "redirect:/worker/list";
 //    }
 }

@@ -10,4 +10,6 @@ public interface WorkerDAO {
 
     public void saveWorker(Worker theWorker);
 
+    public Worker getWorker(int theId);
+
 }

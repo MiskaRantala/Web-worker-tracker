@@ -39,7 +39,19 @@ public class WorkerDAOImpl implements WorkerDAO {
         // get current hibernate session
         Session currentSession = sessionFactory.getCurrentSession();
 
-        // save the worker
-        currentSession.save(theWorker);
+        // save/update the worker
+        currentSession.saveOrUpdate(theWorker);
+    }
+
+    @Override
+    public Worker getWorker(int theId) {
+
+        // get the current hibernate session
+        Session currentSession = sessionFactory.getCurrentSession();
+
+        // now retrieve/read from database using primary key
+        Worker theWorker = currentSession.get(Worker.class, theId);
+
+        return theWorker;
     }
 }

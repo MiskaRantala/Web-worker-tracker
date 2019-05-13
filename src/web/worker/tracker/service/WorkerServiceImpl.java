@@ -1,6 +1,5 @@
 package web.worker.tracker.service;
 
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +25,13 @@ public class WorkerServiceImpl implements WorkerService {
     public void saveWorker(Worker theWorker) {
 
         workerDAO.saveWorker(theWorker);
+    }
+
+    @Override
+    @Transactional
+    public Worker getWorker(int theId) {
+
+        return workerDAO.getWorker(theId);
     }
 
 

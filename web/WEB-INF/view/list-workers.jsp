@@ -35,15 +35,36 @@
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
+                        <th>Action</th>
                     </tr>
 
                     <!-- loop over and print our customers -->
                     <c:forEach var="tempWorker" items="${workers}">
 
+                        <!-- construct and "update" link with worker id -->
+                        <c:url var="updateLink" value="/worker/showFormForUpdate">
+                            <c:param name="workerId" value="${tempWorker.id}" />
+                        </c:url>
+
+                        <!-- construct and "delete" link with worker id -->
+                        <c:url var="deleteLink" value="/worker/delete">
+                            <c:param name="workerId" value="${tempWorker.id}" />
+                        </c:url>
+
                         <tr>
                             <td> ${tempWorker.firstName} </td>
                             <td> ${tempWorker.lastName} </td>
                             <td> ${tempWorker.email} </td>
+
+                            <td>
+                                <!-- display the update link -->
+                                <a href="${updateLink}">Update</a>
+                                |
+                                <!-- display the delete link -->
+                                <a href="${deleteLink}"
+                                   onclick="if (!(confirm('Are you sure you want to delete this worker?'))) return false">Delete</a>
+                            </td>
+
                         </tr>
 
                     </c:forEach>

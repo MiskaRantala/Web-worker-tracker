@@ -22,6 +22,9 @@
 
         <form:form action="saveWorker" modelAttribute="worker" METHOD="POST">
 
+            <!-- associate this date with customer id -->
+            <form:hidden path="id" />
+
             <table>
                 <tbody>
                     <tr>

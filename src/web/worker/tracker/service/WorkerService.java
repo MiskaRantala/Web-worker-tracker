@@ -8,4 +8,6 @@ public interface WorkerService {
     public List<Worker> getWorkers();
 
     public void saveWorker(Worker theWorker);
+
+    public Worker getWorker(int theId);
 }
